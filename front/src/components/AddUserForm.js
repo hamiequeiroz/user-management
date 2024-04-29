@@ -1,49 +1,20 @@
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
 
-
-const AdicionarUsuario = ( ) => {
+const AddUserForm = ({ addUser }) => {
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nivel, setNivel] = useState('');
 
-const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Verifica se todos os campos foram preenchidos
     if (!nome || !email || !password) return;
-
-    const userData = {
-        nome: nome,
-        sobrenome: sobrenome,
-        email: email,
-        senha: password,
-        nivel: nivel,
-      };
-  
     
     console.log(nome, sobrenome, email, password, nivel);
-    try {
-        const response = await fetch('http://127.0.0.1:5000/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userData)
-        });
-  
-        if (response.ok) {
-          console.log('Usuário cadastrado com sucesso!');
-          window.location.href = '/user';
-        } else {
-          console.error('Erro ao cadastrar usuário:', response.statusText);
-        }
-    } catch (error) {
-    console.error('Erro ao cadastrar usuário:', error);
-    }
-  
-    
+    // Limpa os campos do formulário
     setNome('');
     setSobrenome('');
     setEmail('');
@@ -104,8 +75,8 @@ const handleSubmit = async (e) => {
                     onChange={(e) => setNivel(e.target.value)}
                 >
                     <option value="">Selecione...</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Usuario">Usuario</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Usuário</option>
                 </select>
             </td>
         </tr>
@@ -124,4 +95,4 @@ const handleSubmit = async (e) => {
   );
 };
 
-export default AdicionarUsuario;
+export default AddUserForm;

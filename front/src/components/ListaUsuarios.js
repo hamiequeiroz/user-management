@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SearchIcon from '@mui/icons-material/Search';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 
 function ListaUsuarios(){
@@ -42,7 +42,9 @@ function ListaUsuarios(){
                         <ListItemText primary={usuarios[i].nome +' ' + usuarios[i].sobrenome +' | ' + usuarios[i].email}  />
                         
                     </ListItemButton>
-                    <ListItemIcon> <SearchIcon /></ListItemIcon>
+                    <ListItemIcon>
+                        <a href={`/update/${usuarios[i].id}`}> <BorderColorIcon /></a>
+                    </ListItemIcon>
                     <ListItemIcon> 
                         <a href={`/delete/${usuarios[i].id}`}><DeleteIcon /></a>
                     </ListItemIcon>
@@ -63,7 +65,7 @@ function ListaUsuarios(){
                     </List>
                 </nav>
             </Box>
-            <a href="/"><Button variant="contained"  color="primary">Voltar</Button></a>
+            <a href="/"><Button variant="contained"  color="error">Voltar</Button></a>
         </div>
         </center>
     );

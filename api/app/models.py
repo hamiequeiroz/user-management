@@ -8,4 +8,4 @@ class User(db.Model):
     sobrenome = db.Column(db.String(40))
     email   = db.Column(db.String(120))
     senha   = db.Column(db.String(100))
-    nivel   = db.Column(db.String(10))
+    nivel   = db.Column(db.String(20))

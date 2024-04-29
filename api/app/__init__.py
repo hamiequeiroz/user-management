@@ -49,20 +49,58 @@ def deleteUser(id):
         else:
             return f'Usuário com ID {id} não encontrado.', 404
 
-        redirect('/')
-        return id
+@app.route('/getUser/<int:id>', methods=['GET', 'POST'])
+def getUser(id):
+    if request.method == 'GET':
+        user = User.query.get(id)
+        print(user.id)
+        print(user.nome)
+        print(user.sobrenome)
+        print(user.email)
+        print(user.senha)
+        print(user.nivel)
+        usuario_json = []
+        usuario_dict = {
+                'id': user.id,
+                'nome': user.nome,
+                'sobrenome': user.sobrenome,
+                'email': user.email,
+                'senha': user.senha,
+                'nivel': user.nivel
+        }
+        usuario_json.append(usuario_dict)
+
+        return jsonify(usuario_json)
+        
 
 @app.route('/add', methods=['POST'])
 def add():
     if request.method == 'POST':
         
         data = request.json
-
         print(data)
 
-        # Cria um novo usuário
-        #new_user = User(nome=data['nome'], email=data['email'])
-        #db.session.add(new_user)
-        #db.session.commit()
+        new_user = User(nome=data['nome'], sobrenome=data['sobrenome'],  email=data['email'], senha=data['senha'], nivel=data['nivel'] )
+        db.session.add(new_user)
+        db.session.commit()
 
         return jsonify({'message': 'Usuário cadastrado com sucesso'}), 201
+
+@app.route('/update/<int:id>', methods=['PUT'])
+def update(id):
+    if request.method == 'PUT':
+        
+        data = request.json
+        print(data)
+
+        user = User.query.get(id)
+
+        user.nome = data['nome']
+        user.sobrenome = data['sobrenome']
+        user.email = data['email']
+        user.senha = data['senha']
+        user.nivel = data['nivel']
+
+        db.session.commit()
+
+        return jsonify({'message': 'Usuário atualizado com sucesso'}), 201

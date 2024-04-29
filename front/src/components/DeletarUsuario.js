@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import { useParams } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 
 function DeletarUsuario(){
     
@@ -16,7 +15,7 @@ function DeletarUsuario(){
                     throw new Error('Falha ao buscar usuários');
                 }else{
                     console.log("Delete feito com sucesso")
-                    return <Redirect to="/user" />;
+                    window.location.href = '/user';
                 }
             } catch (error) {
                 console.error('Erro:', error);
@@ -27,8 +26,7 @@ function DeletarUsuario(){
 
     return(
         <div>
-            <h2>Detalhes do Usuario</h2>
-            <p>ID do Usuario: {id}</p>
+            
         </div>
     );
 }
