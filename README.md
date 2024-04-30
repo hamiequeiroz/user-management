@@ -22,7 +22,7 @@ Executar e criar o container com o nosso banco de dados
 # Clone do projeto
 
 Faça do clone do projeto para o seu repositório local usando o comando abaixo.
-- git clone git@github.com:hamiequeiroz/user-management.git
+- git clone https://github.com/hamiequeiroz/user-management.git
 
 # Configuração da API - BackEnd
 
@@ -39,7 +39,7 @@ Fazer a migração do nosso banco de dados e criar os dados iniciais
 - flask db init
 - flask db migrate -m "criação do modelo User"
 - flask db upgrade
-- python .\seed.py
+- python seed.py
 
 Executar nosso servidor backend
 - flask run
