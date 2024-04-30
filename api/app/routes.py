@@ -97,4 +97,4 @@ def update(id):
 
         db.session.commit()
 
-        return jsonify({'message': 'Usuário atualizado com sucesso'}), 201
+        return jsonify({'message': 'Usuário atualizado com sucesso'}), 200
