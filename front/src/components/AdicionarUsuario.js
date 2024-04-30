@@ -8,10 +8,11 @@ const AdicionarUsuario = ( ) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nivel, setNivel] = useState('');
+  const [status, setStatus] = useState('');
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    // Verifica se todos os campos foram preenchidos
+
     if (!nome || !email || !password) return;
 
     const userData = {
@@ -20,10 +21,10 @@ const handleSubmit = async (e) => {
         email: email,
         senha: password,
         nivel: nivel,
+        status: status
       };
   
-    
-    console.log(nome, sobrenome, email, password, nivel);
+    console.log(nome, sobrenome, email, password, nivel, status);
     try {
         const response = await fetch('http://127.0.0.1:5000/add', {
           method: 'POST',
@@ -40,15 +41,14 @@ const handleSubmit = async (e) => {
           console.error('Erro ao cadastrar usuário:', response.statusText);
         }
     } catch (error) {
-    console.error('Erro ao cadastrar usuário:', error);
+      console.error('Erro ao cadastrar usuário:', error);
     }
-  
-    
     setNome('');
     setSobrenome('');
     setEmail('');
     setPassword('');
     setNivel('');
+    setStatus('');
   };
 
   return (
@@ -110,17 +110,29 @@ const handleSubmit = async (e) => {
             </td>
         </tr>
         <tr>
+            <td>Status:</td>
             <td>
-             <a href="/"><Button variant="contained" color='error'>Voltar</Button></a>
+                <select
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                >
+                    <option value="">Selecione...</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
             </td>
-            <td><Button variant="contained"  type="submit">Adicionar</Button></td>
-            
+        </tr>
+        <tr>
+            <td>
+             <a href="/dashboard"><Button variant="contained" color='error'>Voltar</Button></a>
+            </td>
+            <td>
+              <Button variant="contained"  type="submit">Adicionar</Button>
+            </td>
         </tr>
       </table><br/>
     </form>
-    
     </center>
-    
   );
 };
 

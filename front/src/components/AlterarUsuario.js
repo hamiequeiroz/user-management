@@ -10,13 +10,15 @@ function AlterarUsuario(){
         'sobrenome': '',
         'email': '',
         'senha': '',
-        'nivel': ''
+        'nivel': '',
+        'status':'',
     }]);
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nivel, setNivel] = useState('');
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         async function fetchAlterarUsuarios() {
@@ -27,9 +29,8 @@ function AlterarUsuario(){
                     throw new Error('Falha ao buscar usuários');
                 }else{
                     console.log("Busca feita com sucesso")
-                }
-                setUsuarios(await response.json());
-                
+                    setUsuarios(await response.json());
+                }                
             } catch (error) {
                 console.error('Erro:', error);
             }
@@ -44,12 +45,13 @@ function AlterarUsuario(){
             setEmail(usuarios[0].email);
             setPassword(usuarios[0].senha);
             setNivel(usuarios[0].nivel);
+            setStatus(usuarios[0].status)
         } 
     }, [usuarios]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Verifica se todos os campos foram preenchidos
+
         if (!nome || !email || !password) return;
     
         const userData = {
@@ -59,9 +61,10 @@ function AlterarUsuario(){
             email: email,
             senha: password,
             nivel: nivel,
+            status: status
           };
       
-        console.log(nome, sobrenome, email, password, nivel);
+        console.log(nome, sobrenome, email, password, nivel, status);
         try {
             const response = await fetch(`http://127.0.0.1:5000/update/${id}`, {
               method: 'PUT',
@@ -141,11 +144,23 @@ function AlterarUsuario(){
                 </td>
             </tr>
             <tr>
+                <td>Status:</td>
+                <td>
+                    <select
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                    >
+                        <option value="">Selecione...</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>
                 <a href="/user"><Button variant="contained" color='error'>Voltar</Button></a>
                 </td>
                 <td><Button variant="contained"  type="submit">Alterar</Button></td>
-                
             </tr>
         </table><br/>
         </form>

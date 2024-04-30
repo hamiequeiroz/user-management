@@ -25,9 +25,7 @@ function DeletarUsuario(){
     }, []);
 
     return(
-        <div>
-            
-        </div>
+        <div/>
     );
 }
 

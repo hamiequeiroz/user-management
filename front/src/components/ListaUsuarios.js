@@ -40,7 +40,6 @@ function ListaUsuarios(){
                 <ListItem disablePadding>
                     <ListItemButton>
                         <ListItemText primary={usuarios[i].nome +' ' + usuarios[i].sobrenome +' | ' + usuarios[i].email}  />
-                        
                     </ListItemButton>
                     <ListItemIcon>
                         <a href={`/update/${usuarios[i].id}`}> <BorderColorIcon /></a>
@@ -65,7 +64,7 @@ function ListaUsuarios(){
                     </List>
                 </nav>
             </Box>
-            <a href="/"><Button variant="contained"  color="error">Voltar</Button></a>
+            <a href="/dashboard"><Button variant="contained"  color="error">Voltar</Button></a>
         </div>
         </center>
     );
