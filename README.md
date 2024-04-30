@@ -8,6 +8,8 @@ executar o front.
 
 - Instalar o Docker
 - Instalar o Node.js
+- Instalar o Git
+- Instalar o Python
 
 # Instalação Do Banco de Dados
 
@@ -15,7 +17,7 @@ Para baixar a imagem do banco de dados Postgres
 - docker pull postgres
 
 Executar e criar o container com o nosso banco de dados
-- docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 postgres
+- docker run -d --name postgres -p 5435:5432 -e POSTGRES_PASSWORD=123456 postgres
 
 # Clone do projeto
 
@@ -46,7 +48,7 @@ Prontinho sua aplicação backend vai executar na porta 5000.
 
 # Configuração - FrontEnd
 
-Utizando o terminal entre na pasta "api" digite os seguintes comandos:
+Utizando o terminal entre na pasta "front" digite os seguintes comandos:
 
 Instalar todos os nossos pacotes que vamos precisar na nossa aplicação
 - npm install
